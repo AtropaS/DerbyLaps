@@ -26,6 +26,9 @@ class LapNotifyView extends Ui.View {
     	} else {
 	    	lapLabelView.setText("Lap");
     		lapView.setText(lapNbr.format("%d"));
+    		if (mDevice.equals("vivoactive")) {
+    			Ui.popView(Ui.SLIDE_IMMEDIATE);
+    		}
     	}
     }
 

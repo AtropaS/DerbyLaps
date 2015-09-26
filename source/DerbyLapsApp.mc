@@ -13,6 +13,7 @@ enum {
 var state = STATE_SET_LAPS;
 var laps = 27;
 var mins = 5;
+var mDevice = Ui.loadResource(Rez.Strings.device);
 
 class DerbyLapsApp extends App.AppBase {
 

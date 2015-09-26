@@ -9,7 +9,7 @@ var pacingTimer;
 var lapNbr = 1;
 var msRemaining;
 var session;
-var mDevice = Ui.loadResource(Rez.Strings.device);
+
 
 
 class PacingView extends Ui.View {
@@ -41,19 +41,16 @@ class PacingView extends Ui.View {
 		
 		if (!mDevice.equals("vivoactive")) {
 		    Attn.playTone(Attn.TONE_START);
-		  
-     	    // get ready to start a new FIT recording
-		    session = Recording.createSession({
-			    :name => "Derby Laps",
-			    :sport => Recording.SPORT_TRAINING
-		    });
-	
 	    	// turn on the heart rate and temperature sensors and start recording
  
 		    Sensor.setEnabledSensors([Sensor.SENSOR_HEARTRATE, Sensor.SENSOR_TEMPERATURE]);
-		    session.start();
 		}  
-		
+		     	    // get ready to start a new FIT recording
+		session = Recording.createSession({
+			:sport => Recording.SPORT_TRAINING,
+			:name => "Derby Laps"
+		});
+		session.start();
 		Attn.vibrate(startVibe);
     }
 
@@ -96,9 +93,11 @@ class PacingView extends Ui.View {
     	    if (!mDevice.equals("vivoactive")) {
 			    Attn.playTone(Attn.TONE_STOP);
     			// stop and save the FIT recording
-        		session.stop();
-    	    	session.save();
     		}
+    		
+    		session.stop();
+    	    session.save();
+    		
     		state = STATE_READY;
     		Ui.popView(Ui.SLIDE_IMMEDIATE);
 			Ui.pushView(new LapNotifyView(), new LapNotifyDelegate(), Ui.SLIDE_IMMEDIATE);
@@ -110,9 +109,7 @@ class PacingView extends Ui.View {
 		if(lapNbr > prevLapNbr) {
 			// new lap
 			// add the new lap to the FIT recording session
-			if (!mDevice.equals("vivoactive")) {
-			    session.addLap();
-			}
+			session.addLap();
 			// show them in large text the new lap number
 			// this view will pop itself after being displayed for a brief time
 			Ui.pushView(new LapNotifyView(), new LapNotifyDelegate(), Ui.SLIDE_IMMEDIATE);
@@ -133,10 +130,8 @@ class PacingDelegate extends Ui.BehaviorDelegate {
 		if(evt.getKey() == Ui.KEY_ESC && evt.getType() == Ui.PRESS_TYPE_ACTION) {
 			pacingTimer.stop();
 			// stop and save whatever we have so far in the FIT recording
-            if (!mDevice.equals("vivoactive")) {
-    		    session.stop();
-    		    session.save();
-    		}    
+   		    session.stop();
+   		    session.save();
     		// go back to the setup screen
 			state = STATE_READY;
 			Ui.popView(Ui.SLIDE_DOWN);

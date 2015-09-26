@@ -4,7 +4,6 @@ using Toybox.System as Sys;
 using Toybox.Attention as Attn;
 
 var countdownTimer;
-var mDevice = Ui.loadResource(Rez.Strings.device);
 
 class CountdownView extends Ui.View {
 	var secs = 3;
