@@ -1,0 +1,16 @@
+<resources>
+
+    <properties>
+        <property id="COUNTDOWN_TOGGLE_PROP" type="boolean">false</property>
+    </properties>
+
+    <strings>
+       <string id="COUNTDOWN_TOGGLE_TITLE">Boolean</string>
+    </strings>
+
+    <settings>
+        <setting propertyKey="@Properties.COUNTDOWN_TOGGLE_PROP" title="@Strings.COUNTDOWN_TOGGLE_TITLE">
+            <settingConfig type="boolean" />
+        </setting>
+    </settings>
+</resources>
