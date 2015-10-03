@@ -2,8 +2,7 @@ using Toybox.WatchUi as Ui;
 using Toybox.Graphics as Gfx;
 using Toybox.System as Sys;
 using Toybox.Attention as Attn;
-
-var countdownToggle = false;
+using Toybox.Application as App;
 
 class SetupView extends Ui.View {
 
@@ -61,6 +60,9 @@ class SetupDelegate extends Ui.BehaviorDelegate {
 	var shortVibe = [new Attn.VibeProfile(100, 250)];
 
 	function onKey(evt) {
+	    var app = App.getApp();
+	    var countdownToggle = app.getProperty("COUNTDOWN_TOGGLE_PROP");
+	    
     	if(evt.getKey() == Ui.KEY_ENTER && evt.getType() == Ui.PRESS_TYPE_ACTION) {
     		// go to the next state
         	state += 1;
