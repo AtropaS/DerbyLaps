@@ -5,7 +5,7 @@
     </properties>
 
     <strings>
-       <string id="COUNTDOWN_TOGGLE_TITLE">Boolean</string>
+       <string id="COUNTDOWN_TOGGLE_TITLE">Countdown Toggle</string>
     </strings>
 
     <settings>

@@ -22,7 +22,9 @@ class LapNotifyView extends Ui.View {
     	var lapLabelView = View.findDrawableById("lapLabel");
     	if(msRemaining == 0) {
 	    	lapLabelView.setText("Laps");
-	    	lapView.setText("done");
+	    	// placeholder font to account for missing characters in numeric fonts
+	    	lapView.setFont(Gfx.FONT_LARGE);
+	    	lapView.setText("DONE");
     	} else {
 	    	lapLabelView.setText("Lap");
     		lapView.setText(lapNbr.format("%d"));
