@@ -44,8 +44,10 @@ class PacingView extends Ui.View {
 	    	// turn on the heart rate and temperature sensors and start recording
  
 		    Sensor.setEnabledSensors([Sensor.SENSOR_HEARTRATE, Sensor.SENSOR_TEMPERATURE]);
-		}  
-		
+		} else {  
+		    Sensor.setEnabledSensors([Sensor.SENSOR_HEARTRATE]);
+		}
+				
 		// get ready to start a new FIT recording
 		session = Recording.createSession({
 			:name => "Derby Laps",
